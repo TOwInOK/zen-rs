@@ -6,8 +6,10 @@ pub struct Icon {
     // content
     content: Vec<Path>,
     // Aspects
+    // colors
     foreground_color: ForegroundColor,
     background_color: BackgroundColor,
+    // size
     width: Width,
     height: Height,
 }

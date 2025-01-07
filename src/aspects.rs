@@ -1,5 +1,9 @@
 /// Need to be presented?
 pub type Show = bool;
+/// Path to any destination
+pub type Path = String;
+/// Size
+pub type Size = u64;
 
 // Colors
 pub type Red = u8;
@@ -35,14 +39,20 @@ pub enum Order {
     RightToLeft,
 }
 
+// Link
+pub type Link = Option<Path>;
+
 // Sizes
-pub type Size = u64;
 pub type Width = Size;
 pub type Height = Size;
 
+// Spaces
+/// Space between components
+pub type Gap = Size;
+/// Space between content and edge
+pub type Padding = Size;
+
 // Font
-/// Path to font
-pub type Path = String;
 /// Font settings
 pub type Font = (Weight, IsStrikethrough, IsUnderline, IsItalic);
 
@@ -55,16 +65,28 @@ pub type IsItalic = Show;
 
 #[derive(Debug, Default, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Weight {
+    Heavy,
+    ExtraBold,
+    Bold,
+    SemiBold,
+    Medium,
     #[default]
     Normal,
-    Bold,
+    Light,
+    ExtraLight,
     Thin,
 }
 impl From<u64> for Weight {
     fn from(value: u64) -> Self {
         match value {
-            600 => Self::Bold,
-            300 => Self::Normal,
+            900 => Self::Heavy,
+            800 => Self::ExtraBold,
+            700 => Self::Bold,
+            600 => Self::SemiBold,
+            500 => Self::Medium,
+            400 => Self::Normal,
+            300 => Self::Light,
+            200 => Self::ExtraLight,
             100 => Self::Thin,
             _ => panic!("Unsoported value"),
         }
@@ -73,8 +95,14 @@ impl From<u64> for Weight {
 impl From<Weight> for u64 {
     fn from(val: Weight) -> Self {
         match val {
-            Weight::Normal => 600,
-            Weight::Bold => 300,
+            Weight::Heavy => 900,
+            Weight::ExtraBold => 800,
+            Weight::Bold => 700,
+            Weight::SemiBold => 600,
+            Weight::Medium => 500,
+            Weight::Normal => 400,
+            Weight::Light => 300,
+            Weight::ExtraLight => 200,
             Weight::Thin => 100,
         }
     }

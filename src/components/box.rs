@@ -1,4 +1,6 @@
-use crate::aspects::{BackgroundColor, Border, ForegroundColor, Height, Order, Width};
+use crate::aspects::{
+    BackgroundColor, Border, ForegroundColor, Gap, Height, Order, Padding, Width,
+};
 
 use super::Components;
 
@@ -7,12 +9,19 @@ pub struct Box {
     // components
     components: Vec<Components>,
     // Aspects
+    // color
     foreground_color: ForegroundColor,
     background_color: BackgroundColor,
+    // size
     width: Width,
     height: Height,
+    // border
     border: Border,
+    // order
     direction: Order,
+    // spaces
+    gap: Gap,
+    padding: Padding,
 }
 
 pub fn r#box() -> Box {
@@ -23,6 +32,27 @@ impl Box {
     /// Pust component to box
     pub fn component(&mut self, component: Components) {
         self.components.push(component);
+    }
+
+    pub fn get_components(&self) -> &[Components] {
+        &self.components
+    }
+
+    pub fn gap(mut self, gap: Gap) -> Self {
+        self.gap = gap;
+        self
+    }
+
+    pub fn padding(mut self, padding: Padding) -> Self {
+        self.padding = padding;
+        self
+    }
+
+    pub fn get_gap(&self) -> &Gap {
+        &self.gap
+    }
+    pub fn get_padding(&self) -> &Padding {
+        &self.padding
     }
 
     pub fn foreground_color(mut self, foreground_color: ForegroundColor) -> Self {

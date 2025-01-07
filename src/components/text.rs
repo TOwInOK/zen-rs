@@ -1,14 +1,20 @@
-use crate::aspects::{BackgroundColor, Font, ForegroundColor, Size};
+use crate::aspects::{BackgroundColor, Font, ForegroundColor, Link, Path, Size};
 
 #[derive(Debug, Default, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Text {
     // Content
     content: String,
     // Aspects
+    // colors
     foreground_color: ForegroundColor,
     background_color: BackgroundColor,
+    // size
     size: Size,
+    // font
     font: Font,
+    // link
+    /// if is Some, this is link
+    link: Link,
 }
 
 pub fn text() -> Text {
@@ -16,6 +22,11 @@ pub fn text() -> Text {
 }
 
 impl Text {
+    pub fn link(mut self, link: Path) -> Self {
+        self.link = Some(link);
+        self
+    }
+
     pub fn content(mut self, content: String) -> Self {
         self.content = content;
         self
@@ -59,5 +70,9 @@ impl Text {
 
     pub fn get_font(&self) -> &Font {
         &self.font
+    }
+
+    pub fn get_link(&self) -> &Link {
+        &self.link
     }
 }
