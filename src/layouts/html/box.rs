@@ -17,7 +17,7 @@ pub fn box_html(component: &Box) -> String {
         let mut out = String::new();
         let components = component.get_components();
         for component in components {
-            let component = HtmlBuilder::render(component);
+            let component = HtmlBuilder::render_component(component);
             out.push_str(&component);
         }
         out
