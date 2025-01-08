@@ -27,18 +27,17 @@ pub fn text_html(component: &Text) -> String {
     //css
     let font_style = {
         let u64_weight: u64 = (*weight).into();
+        let fw = |s: u64| format!("font-weight: {s};");
         match weight {
-            crate::aspects::Weight::Heavy => format!("font-weight: {u64_weight};"),
-            crate::aspects::Weight::ExtraBold => format!("font-{u64_weight}: {u64_weight};"),
-            crate::aspects::Weight::Bold => format!("font-weight: {u64_weight};"),
-            crate::aspects::Weight::SemiBold => format!("font-weight: {u64_weight};"),
-            crate::aspects::Weight::Medium => format!("font-weight: {u64_weight};"),
-            crate::aspects::Weight::Normal => {
-                format!("font-weight: {u64_weight};")
-            }
-            crate::aspects::Weight::Light => format!("font-weight: {u64_weight};"),
-            crate::aspects::Weight::ExtraLight => format!("font-weight: {u64_weight};"),
-            crate::aspects::Weight::Thin => format!("font-weight: {u64_weight};"),
+            crate::aspects::Weight::Heavy => fw(u64_weight),
+            crate::aspects::Weight::ExtraBold => fw(u64_weight),
+            crate::aspects::Weight::Bold => fw(u64_weight),
+            crate::aspects::Weight::SemiBold => fw(u64_weight),
+            crate::aspects::Weight::Medium => fw(u64_weight),
+            crate::aspects::Weight::Normal => fw(u64_weight),
+            crate::aspects::Weight::Light => fw(u64_weight),
+            crate::aspects::Weight::ExtraLight => fw(u64_weight),
+            crate::aspects::Weight::Thin => fw(u64_weight),
         }
     };
     let font_size = format!("font-size: {size}px;");
@@ -57,7 +56,7 @@ pub fn text_html(component: &Text) -> String {
     };
     let bg_color = format!("background-color: rgba({b_red}, {b_green}, {b_blue}, {b_alpha});");
     let fg_color = format!("color: rgba({f_red}, {f_green}, {f_blue}, {f_alpha});");
-    let font_family = format!(r#"font-family: "{custom_font}", {default_font};"#);
+    let font_family = format!(r#"font-family: '{custom_font}', {default_font};"#);
 
     let css = format!(
         r#"style="{bg_color} {fg_color} {font_size} {font_sui} {font_style} {font_family}""#

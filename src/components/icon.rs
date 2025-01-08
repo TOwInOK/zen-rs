@@ -1,6 +1,12 @@
+pub mod github;
+
 use crate::aspects::{Height, Path, Size, StrokeLinecap, StrokeLinejoin, SvgColor, Width};
 
 pub static XMLNS: &str = r"http://www.w3.org/2000/svg";
+
+pub fn icon() -> Icon {
+    Icon::default()
+}
 
 #[derive(Debug, Default, Clone, PartialEq, PartialOrd)]
 /// Svg
@@ -44,6 +50,12 @@ impl Icon {
 
     pub fn content(mut self, content: impl ToString) -> Self {
         self.content.push(content.to_string());
+        self
+    }
+
+    pub fn contents(mut self, content: Vec<impl ToString>) -> Self {
+        self.content
+            .append(&mut content.iter().map(|x| x.to_string()).collect());
         self
     }
 

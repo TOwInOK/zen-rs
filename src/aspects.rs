@@ -24,8 +24,8 @@ pub type BackgroundColor = Color;
 /// Hex
 #[derive(Debug, Default, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub enum SvgColor {
-    None,
     #[default]
+    None,
     CurrentColor,
     Color(String),
 }
@@ -41,7 +41,8 @@ impl Display for SvgColor {
 
 // Border
 /// Border type
-pub type Border = (Show, Size);
+pub type Border = (Size, Color, Radius);
+pub type Radius = Size;
 
 // Alignments
 /// Order elements in container
@@ -195,4 +196,13 @@ impl Display for StrokeLinecap {
             StrokeLinecap::Square => write!(f, "square"),
         }
     }
+}
+
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub enum Align {
+    #[default]
+    Left,
+    Center,
+    Right,
+    SpaceBetween,
 }

@@ -1,10 +1,10 @@
+use container::container_html;
 use icon::icon_html;
-use r#box::box_html;
 use text::text_html;
 
 use crate::components::Components;
 
-mod r#box;
+mod container;
 mod icon;
 mod text;
 
@@ -33,13 +33,14 @@ impl HtmlBuilder {
         self
     }
 
+    pub fn css_disable_default_browser_css(&self) -> &str {
+        "* { margin: 0; padding: 0; box-sizing: border-box; overflow: clip; } html, body { height: 100%; line-height: 1.5; } body { background: none; color: inherit; text-align: inherit; } h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: inherit; margin: 0; } p { margin: 0; } ul, ol { list-style: none; } a { text-decoration: none; color: inherit; } "
+    }
+
     pub fn build_style(&self) -> String {
         let css_font_import_urls = self.get_css_font_import_urls();
-        format!(
-            r#"<style>
-            {css_font_import_urls}
-            </style>"#
-        )
+        let disable_default = self.css_disable_default_browser_css();
+        format!(r#"<style>{disable_default}{css_font_import_urls}</style>"#)
     }
 }
 
@@ -56,17 +57,21 @@ impl HtmlBuilder {
 
 /// build
 impl HtmlBuilder {
+    /// fn for components
+    /// Convert components to html
     pub fn render_component(component: &Components) -> String {
         match component {
-            Components::Box(component) => box_html(component),
+            Components::Container(component) => container_html(component),
             Components::Text(component) => text_html(component),
             Components::Icon(component) => icon_html(component),
         }
     }
+    /// Convert components to html
     pub fn render(&self) -> String {
         let component = self.get_component();
         Self::render_component(component)
     }
+    /// Convert components to html with css <style>
     pub fn build(&self) -> String {
         let render = self.render();
         let style = self.build_style();
@@ -74,5 +79,11 @@ impl HtmlBuilder {
             r#"{render}
             {style}"#
         )
+    }
+    /// Generate default html with style
+    pub fn build_as_html(&self) -> String {
+        let render = self.render();
+        let style = self.build_style();
+        format!(r#"<html><head>{style}</head><body>{render}</body></html>"#)
     }
 }

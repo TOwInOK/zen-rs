@@ -86,12 +86,12 @@ impl Text {
     }
 
     /// Set default font-family default type
-    /// Serif
-    /// SansSerif | Default
-    /// Monospace
-    /// Cursive
-    /// Fantasy
-    /// SystemUi
+    /// - Serif
+    /// - SansSerif | Default
+    /// - Monospace
+    /// - Cursive
+    /// - Fantasy
+    /// - SystemUi
     pub fn font_default(mut self, def: DefaultFontFamily) -> Self {
         self.font_style.4 .1 = def;
         self

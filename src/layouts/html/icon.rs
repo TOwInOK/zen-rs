@@ -43,16 +43,17 @@ pub fn icon_html(component: &Icon) -> String {
     // out
     format!(
         r#"
-        xmlns="http://www.w3.org/2000/svg"
+        <svg xmlns="http://www.w3.org/2000/svg"
         width="{w}"
         height="{h}"
         {vb}
-        fill="{fg}"
+        fill="{bg}"
+        stroke="{fg}"
         {slp}
         {slj}
-        {sw}
+        {sw}>
         {first}
-        {paths}
+        {paths}</svg>
     "#
     )
 }
