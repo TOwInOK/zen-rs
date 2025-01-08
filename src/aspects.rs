@@ -73,7 +73,38 @@ pub type Padding = Size;
 
 // Font
 /// Font settings
-pub type FontStyle = (Weight, IsStrikethrough, IsUnderline, IsItalic);
+pub type FontStyle = (Weight, IsStrikethrough, IsUnderline, IsItalic, FontFamily);
+
+pub type ApplyableFont = String;
+
+pub type FontFamily = (ApplyableFont, DefaultFontFamily);
+
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub enum DefaultFontFamily {
+    // mb this need's to be default, idk
+    Serif,
+    // mb this true path, idk
+    #[default]
+    SansSerif,
+    Monospace,
+    Cursive,
+    Fantasy,
+    SystemUi,
+}
+
+impl Display for DefaultFontFamily {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let font_name = match self {
+            DefaultFontFamily::Serif => "serif",
+            DefaultFontFamily::SansSerif => "sans-serif",
+            DefaultFontFamily::Monospace => "monospace",
+            DefaultFontFamily::Cursive => "cursive",
+            DefaultFontFamily::Fantasy => "fantasy",
+            DefaultFontFamily::SystemUi => "system-ui",
+        };
+        write!(f, "{}", font_name)
+    }
+}
 
 /// Is ~~Strikethrough~~
 pub type IsStrikethrough = Show;

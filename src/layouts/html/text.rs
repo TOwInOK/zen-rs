@@ -5,7 +5,7 @@ pub fn text_html(component: &Text) -> String {
     let (f_red, f_green, f_blue, f_alpha) = component.get_foreground_color();
     let (b_red, b_green, b_blue, b_alpha) = component.get_background_color();
     let size = component.get_size();
-    let (weight, s, u, i) = component.get_font();
+    let (weight, s, u, i, (custom_font, default_font)) = component.get_font();
 
     // tag
     let tag = if component.get_link().is_some() {
