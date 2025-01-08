@@ -57,8 +57,11 @@ pub fn text_html(component: &Text) -> String {
     };
     let bg_color = format!("background-color: rgba({b_red}, {b_green}, {b_blue}, {b_alpha});");
     let fg_color = format!("color: rgba({f_red}, {f_green}, {f_blue}, {f_alpha});");
+    let font_family = format!(r#"font-family: "{custom_font}", {default_font};"#);
 
-    let css = format!(r#"style="{bg_color} {fg_color} {font_size} {font_sui} {font_style}""#);
+    let css = format!(
+        r#"style="{bg_color} {fg_color} {font_size} {font_sui} {font_style} {font_family}""#
+    );
     // out
     format!("<{tag} {css} {href}>{content}</{tag}>")
 }
