@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "zen"
+name = "zen-rs"
 version = "0.1.0"

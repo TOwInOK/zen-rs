@@ -1,8 +1,16 @@
 [package]
-name = "zen"
+name = "zen-rs"
 version = "0.1.0"
 edition = "2021"
-authors = ["TOwInOK"]
+authors = ["TOwInOK <60252419+TOwInOK@users.noreply.github.com>"]
 license = "MIT"
+description = "A library for generating non-interactive content like cards or files."
+readme = "README.md"
+repository = "https://github.com/TOwInOK/zen-rs"
+homepage = "https://github.com/TOwInOK/zen-rs"
+documentation = "https://docs.rs/zen-rs"
+keywords = ["non-interactive", "rendering", "HTML", "SVG", "PDF"]
+categories = ["rendering", "web-programming", "text-processing", "template-engine"]
+license-file = "LICENSE"
 
 [dependencies]
