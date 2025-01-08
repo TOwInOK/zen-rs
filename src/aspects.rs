@@ -73,7 +73,7 @@ pub type Padding = Size;
 
 // Font
 /// Font settings
-pub type Font = (Weight, IsStrikethrough, IsUnderline, IsItalic);
+pub type FontStyle = (Weight, IsStrikethrough, IsUnderline, IsItalic);
 
 /// Is ~~Strikethrough~~
 pub type IsStrikethrough = Show;
