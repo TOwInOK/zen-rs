@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 /// Need to be presented?
 pub type Show = bool;
 /// Path to any destination
@@ -19,6 +21,23 @@ pub type Color = (Red, Green, Blue, Alpha);
 pub type ForegroundColor = Color;
 /// only For Background
 pub type BackgroundColor = Color;
+/// Hex
+#[derive(Debug, Default, Clone, PartialEq, Eq, PartialOrd, Ord)]
+pub enum SvgColor {
+    None,
+    #[default]
+    CurrentColor,
+    Color(String),
+}
+impl Display for SvgColor {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            SvgColor::None => write!(f, "None"),
+            SvgColor::CurrentColor => write!(f, "currentColor"),
+            SvgColor::Color(color) => write!(f, "{}", color),
+        }
+    }
+}
 
 // Border
 /// Border type
@@ -104,6 +123,45 @@ impl From<Weight> for u64 {
             Weight::Light => 300,
             Weight::ExtraLight => 200,
             Weight::Thin => 100,
+        }
+    }
+}
+
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub enum StrokeLinejoin {
+    Arcs,
+    Bevel,
+    #[default]
+    Miter,
+    MiterClip,
+    Round,
+}
+impl Display for StrokeLinejoin {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            StrokeLinejoin::Arcs => write!(f, "arcs"),
+            StrokeLinejoin::Bevel => write!(f, "bevel"),
+            StrokeLinejoin::Miter => write!(f, "miter"),
+            StrokeLinejoin::MiterClip => write!(f, "miterClip"),
+            StrokeLinejoin::Round => write!(f, "round"),
+        }
+    }
+}
+
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub enum StrokeLinecap {
+    #[default]
+    Butt,
+    Round,
+    Square,
+}
+
+impl Display for StrokeLinecap {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            StrokeLinecap::Butt => write!(f, "butt"),
+            StrokeLinecap::Round => write!(f, "round"),
+            StrokeLinecap::Square => write!(f, "square"),
         }
     }
 }

@@ -58,7 +58,33 @@ pub fn text_html(component: &Text) -> String {
     let bg_color = format!("background-color: rgba({b_red}, {b_green}, {b_blue}, {b_alpha});");
     let fg_color = format!("color: rgba({f_red}, {f_green}, {f_blue}, {f_alpha});");
 
-    let css = format!(r#"style="{bg_color} {fg_color} {font_size} {font_sui} {font_style}" "#);
+    let css = format!(r#"style="{bg_color} {fg_color} {font_size} {font_sui} {font_style}""#);
     // out
-    format!("<{tag} {href} {css}>{content}</{tag}>")
+    format!("<{tag} {css} {href}>{content}</{tag}>")
+}
+
+#[cfg(test)]
+mod test_text {
+    use crate::components::text::text;
+
+    use super::text_html;
+
+    #[test]
+    fn def() {
+        let text1 = text()
+            .content("Some Text")
+            .background_color((255, 255, 255, 100))
+            .foreground_color((0, 0, 0, 100))
+            .size(18);
+        let html = text_html(&text1);
+        println!("OUT: {}", html);
+        let text2 = text()
+            .content("Some Text")
+            .background_color((255, 255, 255, 100))
+            .foreground_color((0, 0, 0, 100))
+            .size(18)
+            .link("#");
+        let html = text_html(&text2);
+        println!("OUT: {}", html);
+    }
 }

@@ -1,34 +1,19 @@
 # Библиотека компонентов для генерации не интерактивных страниц/файлов
 
 # Компоненты
-* [x] Box (контейнер) ->
-Forecolor (fc) - для border,
-Backcolor (bc) - для background,
-Width - ширина
-Height - высота
-border - (Show, Size)
-  * [x] VStack (Вертикально)
-  * [x] HStack (Горизонтально)
-  * [x] ZStack (Наслоение)
-* [x] Text ->
-Forecolor (fc) - для border,
-Backcolor (bc) - для background,
-Font,
-Size - размер шрифта,
-зачёркнут?,
-Жирный?,
-Подчёркнут?,
-Курсив?,
-* [ ] Icon ->
-Forecolor (fc) - для border,
-Backcolor (bc) - для background,
-Weight - ширина
-Height - высота
-  * [ ] Fill
-  * [ ] Outline
-
+* [x] Box (контейнер)
+  - Ordering
+  * [x] Vertical
+  * [x] Horizontal
+  * [x] Vertical Revers
+  * [x] Horizontal Revers
+* [x] Text
+  - [x] just text
+  - [x] text as link (only html)
+* [x] Icon
+  - avaiable addition svg attributes
 # Доступные рендеры
-* [ ] HTML
+* [x] HTML
 * [ ] PNG
 * [ ] PDF
 * [ ] Leptos

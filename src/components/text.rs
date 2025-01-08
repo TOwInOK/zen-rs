@@ -1,6 +1,6 @@
-use crate::aspects::{BackgroundColor, Font, ForegroundColor, Link, Path, Size};
+use crate::aspects::{BackgroundColor, Font, ForegroundColor, Link, Size};
 
-#[derive(Debug, Default, Clone, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, Default, Clone, PartialEq, PartialOrd)]
 pub struct Text {
     // Content
     content: String,
@@ -22,13 +22,13 @@ pub fn text() -> Text {
 }
 
 impl Text {
-    pub fn link(mut self, link: Path) -> Self {
-        self.link = Some(link);
+    pub fn link(mut self, link: impl ToString) -> Self {
+        self.link = Some(link.to_string());
         self
     }
 
-    pub fn content(mut self, content: String) -> Self {
-        self.content = content;
+    pub fn content(mut self, content: impl ToString) -> Self {
+        self.content = content.to_string();
         self
     }
 

@@ -1,3 +1,4 @@
+use icon::icon_html;
 use r#box::box_html;
 use text::text_html;
 
@@ -13,7 +14,7 @@ impl HtmlBuilder {
         match component {
             Components::Box(component) => box_html(component),
             Components::Text(component) => text_html(component),
-            Components::Icon => todo!(),
+            Components::Icon(component) => icon_html(component),
         }
     }
 }

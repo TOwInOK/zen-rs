@@ -1,3 +1,4 @@
+use icon::Icon;
 use r#box::Box;
 use text::Text;
 
@@ -5,11 +6,11 @@ pub mod r#box;
 pub mod icon;
 pub mod text;
 
-#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, Clone, PartialEq, PartialOrd)]
 pub enum Components {
     Box(Box),
     Text(Text),
-    Icon,
+    Icon(Icon),
 }
 
 impl Default for Components {

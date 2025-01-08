@@ -4,7 +4,7 @@ use crate::aspects::{
 
 use super::Components;
 
-#[derive(Debug, Default, Clone, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, Default, Clone, PartialEq, PartialOrd)]
 pub struct Box {
     // components
     components: Vec<Components>,
