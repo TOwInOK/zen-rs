@@ -1,12 +1,12 @@
-use container::container_html;
-use icon::icon_html;
-use text::text_html;
-
 use crate::components::Components;
 
 mod container;
 mod icon;
 mod text;
+
+pub use container::*;
+pub use icon::*;
+pub use text::*;
 
 pub fn html_builder() -> HtmlBuilder {
     HtmlBuilder::default()
@@ -22,7 +22,7 @@ pub struct HtmlBuilder {
     component: Components,
 }
 
-/// css
+// css
 impl HtmlBuilder {
     pub fn get_css_font_import_urls(&self) -> &str {
         &self.css_font_import_urls
@@ -55,7 +55,7 @@ impl HtmlBuilder {
     }
 }
 
-/// build
+// build
 impl HtmlBuilder {
     /// fn for components
     /// Convert components to html

@@ -1,10 +1,10 @@
-use container::Container;
-use icon::Icon;
-use text::Text;
-
 pub mod container;
 pub mod icon;
 pub mod text;
+
+pub use container::*;
+pub use icon::*;
+pub use text::*;
 
 #[derive(Debug, Clone, PartialEq, PartialOrd)]
 pub enum Components {
