@@ -10,75 +10,76 @@ use crate::aspects::{
     BackgroundColor, DefaultFontFamily, FontStyle, ForegroundColor, Link, Size, Weight,
 };
 
-/// Text representation
-#[derive(Debug, Default, Clone, PartialEq, PartialOrd)]
-pub struct Text {
-    // Content
-    content: String,
-    // Aspects
-    // colors
-    foreground_color: ForegroundColor,
-    background_color: BackgroundColor,
-    // font settings
-    font_style: FontStyle,
-    // link
-    /// if is Some, this is link
-    link: Link,
-}
-
-/// Return default text object
+/// Return default [Text] instance
 pub fn text() -> Text {
     Text::default()
 }
 
+/// Text representation
+#[derive(Debug, Default, Clone, PartialEq, PartialOrd)]
+pub struct Text {
+    /// Content of the text component
+    content: String,
+    /// Foreground color of the text
+    foreground_color: ForegroundColor,
+    /// Background color of the text
+    background_color: BackgroundColor,
+    /// Font style of the text (size, weight, etc.)
+    font_style: FontStyle,
+    /// Optional link associated with the text
+    link: Link,
+}
+
 impl Text {
-    /// Set link
+    /// Set a link for the text component
     pub fn link(mut self, link: impl ToString) -> Self {
         self.link = Some(link.to_string());
         self
     }
 
-    /// Set text
+    /// Set the content of the text component
     pub fn content(mut self, content: impl ToString) -> Self {
         self.content = content.to_string();
         self
     }
 
-    /// Set foreground color
+    /// Set the foreground color of the text
     pub fn foreground_color(mut self, foreground_color: ForegroundColor) -> Self {
         self.foreground_color = foreground_color;
         self
     }
 
-    /// Set background color
+    /// Set the background color of the text
     pub fn background_color(mut self, background_color: BackgroundColor) -> Self {
         self.background_color = background_color;
         self
     }
 
-    /// Set font size
+    /// Set the font size of the text
     pub fn size(mut self, size: Size) -> Self {
         self.font_style.0 = size;
         self
     }
 
-    /// just revers bool
+    /// Toggle the strikeout style for the text
     pub fn is_strikeout(mut self) -> Self {
         self.font_style.2 = !self.font_style.2;
         self
     }
-    /// just revers bool
+
+    /// Toggle the underline style for the text
     pub fn is_underline(mut self) -> Self {
         self.font_style.3 = !self.font_style.3;
         self
     }
-    /// just revers bool
+
+    /// Toggle the italic style for the text
     pub fn is_italic(mut self) -> Self {
         self.font_style.4 = !self.font_style.4;
         self
     }
 
-    /// Set weight of font
+    /// Set the weight of the font
     ///  - [Weight::Heavy] => 900
     ///  - [Weight::ExtraBold] => 800
     ///  - [Weight::Bold] => 700
@@ -93,13 +94,13 @@ impl Text {
         self
     }
 
-    /// Set a name font
+    /// Set a custom font name
     pub fn font_custom(mut self, name: impl ToString) -> Self {
         self.font_style.5 .0 = name.to_string();
         self
     }
 
-    /// Set default font-family default type
+    /// Set the default font family type
     /// - Serif
     /// - SansSerif | Default
     /// - Monospace
@@ -111,38 +112,38 @@ impl Text {
         self
     }
 
-    /// Set all [FontStyle] directly
+    /// Set the complete [FontStyle] directly
     pub fn font_style(mut self, font: FontStyle) -> Self {
         self.font_style = font;
         self
     }
 
-    /// Get text
+    /// Get the text content
     pub fn get_content(&self) -> &str {
         self.content.as_str()
     }
 
-    /// Get foreground color
+    /// Get the foreground color
     pub fn get_foreground_color(&self) -> ForegroundColor {
         self.foreground_color
     }
 
-    /// Get background color
+    /// Get the background color
     pub fn get_background_color(&self) -> BackgroundColor {
         self.background_color
     }
 
-    /// Get font size
+    /// Get the font size
     pub fn get_size(&self) -> Size {
         self.font_style.0
     }
 
-    /// Get all font style
+    /// Get the complete font style
     pub fn get_font(&self) -> &FontStyle {
         &self.font_style
     }
 
-    /// Get link
+    /// Get the link (if any) associated with the text
     pub fn get_link(&self) -> &Link {
         &self.link
     }
