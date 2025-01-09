@@ -1,7 +1,26 @@
-use crate::components::container::Container;
+//! This module contains the `container_html` function for rendering a `Container`
+//! component into an HTML string with specified styles and content.
+//!
+//! The `container_html` function takes a `Container` component, extracts its properties
+//! (such as background color, size, border, gap, padding, alignment, and direction),
+//! and generates an HTML `<div>` element. The function applies appropriate CSS styles
+//! for the container layout (including flexbox styles) and recursively renders
+//! its child components into the container.
 
 use super::HtmlBuilder;
+use crate::components::container::Container;
 
+/// Renders a `Container` component into an HTML string with the specified styles
+/// such as background color, size, border, padding, alignment, and flexbox layout.
+///
+/// # Arguments
+/// * `component` - A reference to a `Container` component containing the properties
+///   such as background color, dimensions, border, padding, and alignment.
+///   It may also include nested components that are rendered inside the container.
+///
+/// # Returns
+/// A string representing the HTML `<div>` element with the specified properties,
+/// styles, and content (child components).
 pub fn container_html(component: &Container) -> String {
     // data
     let (bg_red, bg_green, bg_blue, bg_alpha) = component.get_background_color();

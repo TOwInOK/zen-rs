@@ -1,9 +1,50 @@
-use crate::components::icon::Icon;
-// TODO: Create type for color for ICON
-// - CurrenColor
-// - None
-// - HEX
+//! This module contains the `icon_html` function for rendering an `Icon` component
+//! into an SVG string with specified styles and attributes.
+//!
+//! The `icon_html` function takes an `Icon` component, extracts its properties
+//! (such as foreground and background colors, width, height, viewBox, stroke
+//! attributes, and paths), and generates an SVG element with the appropriate
+//! attributes and content. The paths are wrapped inside `<path>` tags, and
+//! the SVG attributes are applied accordingly, such as stroke and fill styles.
+//!
+//! # Example
+//! ```rust
+//! let icon = Icon::new()
+//!     .foreground_color((255, 0, 0))
+//!     .background_color((0, 0, 0))
+//!     .width(24)
+//!     .height(24)
+//!     .content(vec!["M10 10 H 90 V 90 H 10 Z"]);
+//! let svg = icon_html(&icon);
+//! assert_eq!(svg, r#"<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 100 100" fill="rgb(0, 0, 0)" stroke="rgb(255, 0, 0)" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="1"><path d="M10 10 H 90 V 90 H 10 Z" fill="rgb(0, 0, 0)" /></svg>"#);
+//! ```
+
+use crate::components::{icon::Icon, XMLNS};
+
+/// Renders an `Icon` component into an SVG string with the specified attributes
+/// such as foreground and background colors, width, height, viewBox, and paths.
+///
+/// # Arguments
+/// * `component` - A reference to an `Icon` component containing the properties
+///   such as content (paths), size, stroke attributes, and colors.
+///
+/// # Returns
+/// A string representing the SVG element that renders the icon with the
+/// specified properties and styles.
+///
+/// # Example
+/// ```rust
+/// let icon = Icon::new()
+///     .foreground_color((255, 0, 0))
+///     .background_color((0, 0, 0))
+///     .width(24)
+///     .height(24)
+///     .content(vec!["M10 10 H 90 V 90 H 10 Z"]);
+/// let svg = icon_html(&icon);
+/// assert_eq!(svg, r#"<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 100 100" fill="rgb(0, 0, 0)" stroke="rgb(255, 0, 0)" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="1"><path d="M10 10 H 90 V 90 H 10 Z" fill="rgb(0, 0, 0)" /></svg>"#);
+/// ```
 pub fn icon_html(component: &Icon) -> String {
+    let xmlns = XMLNS;
     // data
     let fg = component.get_foreground_color().to_string();
     let bg = component.get_background_color().to_string();
@@ -15,7 +56,7 @@ pub fn icon_html(component: &Icon) -> String {
     let content = component.get_content();
 
     // content formating
-    let first_path_wrap = |path: &str| format!(r#"<path stroke="none" d="{path}" "fill="{bg}" />"#);
+    let first_path_wrap = |path: &str| format!(r#"<path stroke="none" d="{path}" fill="{bg}" />"#);
     let path_wrap = |path: &str| format!(r#"<path d="{path}"/>"#);
     let first = if let Some(path) = content.first() {
         first_path_wrap(path)
@@ -43,7 +84,7 @@ pub fn icon_html(component: &Icon) -> String {
     // out
     format!(
         r#"
-        <svg xmlns="http://www.w3.org/2000/svg"
+        <svg xmlns="{xmlns}"
         width="{w}"
         height="{h}"
         {vb}

@@ -1,5 +1,40 @@
+//! This module contains the `text_html` function for rendering text components
+//! into HTML with custom styles, as well as a test module for validating the
+//! function's behavior.
+//!
+//! The `text_html` function takes a `Text` component and generates a complete
+//! HTML tag (either a `<div>` or `<a>`) with applied CSS styles for foreground
+//! and background colors, font size, weight, style, and family. It also supports
+//! optional linking by generating a valid `href` attribute when a link is provided.
+//!
+//! The test module ensures that the `text_html` function works as expected by
+//! rendering a few `Text` components and printing the resulting HTML.
+
 use crate::components::text::Text;
 
+/// Renders a `Text` component into an HTML string with applied styles.
+///
+/// This function takes a `Text` component, extracts its properties (such as
+/// foreground color, background color, font size, weight, and optional link),
+/// and generates an HTML tag with the appropriate CSS styles.
+///
+/// # Arguments
+/// * `component` - A reference to a `Text` component that contains the content,
+///   colors, font properties, and optionally a link.
+///
+/// # Returns
+/// A string representing the HTML tag for the component with the correct styles.
+///
+/// # Example
+/// ```rust
+/// let text_component = Text::new()
+///     .content("Hello, World!")
+///     .foreground_color((255, 0, 0, 1))
+///     .background_color((0, 0, 0, 0))
+///     .size(16);
+/// let html = text_html(&text_component);
+/// assert_eq!(html, r#"<div style="color: rgba(255, 0, 0, 1); background-color: rgba(0, 0, 0, 0); font-size: 16px; font-family: 'CustomFont', Arial;">Hello, World!</div>"#);
+/// ```
 pub fn text_html(component: &Text) -> String {
     // data
     let (f_red, f_green, f_blue, f_alpha) = component.get_foreground_color();
@@ -23,7 +58,7 @@ pub fn text_html(component: &Text) -> String {
     // content
     let content = component.get_content();
 
-    //css
+    // css
     let font_style = {
         let u64_weight: u64 = (*weight).into();
         let fw = |s: u64| format!("font-weight: {s};");
