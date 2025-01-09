@@ -13,3 +13,5 @@ keywords = ["non-interactive", "rendering", "HTML", "SVG", "PDF"]
 categories = ["rendering", "web-programming", "text-processing", "template-engine"]
 
 [dependencies]
+paste = "1.0.15"
+skia-safe = "0.80.1"

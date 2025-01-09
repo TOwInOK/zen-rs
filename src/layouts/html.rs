@@ -68,8 +68,8 @@ impl HtmlBuilder {
 // Component-related methods
 impl HtmlBuilder {
     /// Sets the component to be rendered.
-    pub fn component(mut self, component: Components) -> Self {
-        self.component = component;
+    pub fn component(mut self, component: impl Into<Components>) -> Self {
+        self.component = component.into();
         self
     }
 

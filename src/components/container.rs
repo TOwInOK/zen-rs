@@ -1,5 +1,7 @@
 //! Container component
 
+pub mod stack;
+
 use crate::aspects::{Align, BackgroundColor, Border, Gap, Height, Order, Padding, Width};
 
 use super::Components;
@@ -49,7 +51,10 @@ impl Container {
 
     /// Adds multiple components to the container.
     /// **note** at once can be added only 1 type of object
-    pub fn components(mut self, components: Vec<impl Into<Components>>) -> Self {
+    pub fn components(
+        mut self,
+        components: impl IntoIterator<Item = impl Into<Components>>,
+    ) -> Self {
         self.components
             .append(&mut components.into_iter().map(|x| x.into()).collect());
         self

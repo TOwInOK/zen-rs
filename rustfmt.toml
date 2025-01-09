@@ -1,0 +1,6 @@
+max_width = 100
+fn_call_width = 120
+newline_style = "unix"
+[skip_macro_invocations]
+[[vstack]]
+[[hstack]]

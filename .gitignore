@@ -1,3 +1,5 @@
 /target
 html.html
 test_html.html
+tests/skia.rs
+ff.png
