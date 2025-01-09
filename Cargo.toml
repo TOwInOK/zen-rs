@@ -11,6 +11,5 @@ homepage = "https://github.com/TOwInOK/zen-rs"
 documentation = "https://docs.rs/zen-rs"
 keywords = ["non-interactive", "rendering", "HTML", "SVG", "PDF"]
 categories = ["rendering", "web-programming", "text-processing", "template-engine"]
-license-file = "LICENSE"
 
 [dependencies]

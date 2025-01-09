@@ -1,3 +1,5 @@
+//! Icon component
+
 pub mod github;
 
 use crate::aspects::{Height, Path, Size, StrokeLinecap, StrokeLinejoin, SvgColor, Width};

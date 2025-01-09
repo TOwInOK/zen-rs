@@ -17,7 +17,7 @@ pub struct HtmlBuilder {
     /// array of font url imports
     ///
     /// as example:
-    /// - @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
+    /// - @import url('<https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap>');
     css_font_import_urls: String,
     component: Components,
 }
@@ -71,7 +71,7 @@ impl HtmlBuilder {
         let component = self.get_component();
         Self::render_component(component)
     }
-    /// Convert components to html with css <style>
+    /// Convert components to html with css `<style>`
     pub fn build(&self) -> String {
         let render = self.render();
         let style = self.build_style();

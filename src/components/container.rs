@@ -1,3 +1,5 @@
+//! Container component
+
 use crate::aspects::{Align, BackgroundColor, Border, Gap, Height, Order, Padding, Width};
 
 use super::Components;
