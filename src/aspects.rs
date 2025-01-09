@@ -1,6 +1,7 @@
 //! Base types of aspects
 //!
-//! There are places base aspects
+//! This module defines base aspects and their associated types.
+
 pub mod border;
 pub mod color;
 pub mod font;
@@ -15,33 +16,33 @@ pub use order::*;
 pub use spaceing::*;
 pub use svg::*;
 
-/// Need to be presented?
+/// Indicates whether an element should be displayed.
 ///
-/// helpfull arugments in place of Option type.
+/// This is a helper type that serves as a replacement for `Option` in certain cases.
 ///
-/// **note**: mb will be deleted in future
+/// **Note**: This type may be removed in future versions.
 pub type Show = bool;
 
-/// Path to any destination
+/// Represents a path to a destination.
 pub type Path = String;
 
-/// Size
+/// Represents a size value.
 ///
-/// By default means only px, but it can be different for some specific layout
+/// By default, size is assumed to be in pixels, but specific layouts may interpret it differently.
 pub type Size = u64;
 
-/// Link
+/// Represents a hyperlink.
 ///
-/// *note*: Only HTML/Leptos Attribute and it will be ignored for another render type
+/// **Note**: This is applicable only for HTML/Leptos render attributes and will be ignored for other render types.
 ///
-/// HTML Href
+/// For example, this corresponds to an HTML `href` attribute.
 pub type Link = Option<Path>;
 
-// Sizes
-/// Width
-/// presumably in pixels
+// Size-related types
+/// Represents the width of an element.
+/// Presumably measured in pixels.
 pub type Width = Size;
 
-/// Height
-/// presumably in pixels
+/// Represents the height of an element.
+/// Presumably measured in pixels.
 pub type Height = Size;
