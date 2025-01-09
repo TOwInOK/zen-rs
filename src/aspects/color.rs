@@ -12,11 +12,14 @@ pub type Alpha = u8;
 /// - Blue
 /// - Aplha
 pub type Color = (Red, Green, Blue, Alpha);
-/// For border and text
+/// Only for text
+///
+/// **note** border has self color
 pub type ForegroundColor = Color;
-/// only For Background
+/// Only for background
 pub type BackgroundColor = Color;
-/// Hex
+
+/// Choose svg color
 #[derive(Debug, Default, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub enum SvgColor {
     #[default]

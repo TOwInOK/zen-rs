@@ -2,11 +2,18 @@
 
 use std::fmt::Display;
 
-use super::Show;
+use super::{Show, Size};
 
 // Font
 /// Font settings
-pub type FontStyle = (Weight, IsStrikethrough, IsUnderline, IsItalic, FontFamily);
+pub type FontStyle = (
+    Size,
+    Weight,
+    IsStrikethrough,
+    IsUnderline,
+    IsItalic,
+    FontFamily,
+);
 
 pub type ApplyableFont = String;
 

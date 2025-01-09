@@ -1,7 +1,6 @@
 //! Order/Align aspects types
 
-// Alignments
-/// Order elements in container
+/// The order of elements in the container relative to the container area
 #[derive(Debug, Default, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Order {
     /// T -> B
@@ -15,6 +14,7 @@ pub enum Order {
     RightToLeft,
 }
 
+/// Arrangement of the self in the self container
 #[derive(Debug, Default, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Align {
     #[default]
