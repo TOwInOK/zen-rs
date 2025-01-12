@@ -26,7 +26,7 @@ pub fn container_html(component: &Container) -> String {
     let (bg_red, bg_green, bg_blue, bg_alpha) = component.get_background_color();
     let w = component.get_width();
     let h = component.get_height();
-    let (b_size, (b_red, b_green, b_blue, b_alpha), b_radius) = component.get_border();
+    let ((b_size_l, b_size_t, b_size_b, b_size_r), (b_red, b_green, b_blue, b_alpha), b_radius) = component.get_border();
     let gap = component.get_gap();
     let padding = component.get_padding();
     let align = component.get_align_content();
@@ -108,7 +108,12 @@ pub fn container_html(component: &Container) -> String {
         out
     };
     let bg_color = format!("background-color: rgba({bg_red}, {bg_green}, {bg_blue}, {bg_alpha});");
-    let border = format!("border: {b_size}px solid rgba({b_red}, {b_green}, {b_blue}, {b_alpha}); border-radius: {b_radius}px;");
+    let border = format!(
+        "border-left: {b_size_l}px solid rgba({b_red}, {b_green}, {b_blue}, {b_alpha});
+        border-top: {b_size_t}px solid rgba({b_red}, {b_green}, {b_blue}, {b_alpha});
+        border-bottom: {b_size_b}px solid rgba({b_red}, {b_green}, {b_blue}, {b_alpha});
+        border-right: {b_size_r}px solid rgba({b_red}, {b_green}, {b_blue}, {b_alpha});
+        border-radius: {b_radius}px;");
     // css build
     let style = format!(
         r#"style="{flex} {align_content} {align_items} {size} {gap} {direction} {padding} {bg_color} {border}""#

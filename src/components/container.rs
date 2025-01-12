@@ -2,7 +2,7 @@
 
 pub mod stack;
 
-use crate::aspects::{Align, BackgroundColor, Border, Gap, Height, Order, Padding, Width};
+use crate::aspects::{Align, BackgroundColor, BorderPart, BorderStyle, Color, Gap, Height, Order, Padding, Size, Width};
 
 use super::Components;
 
@@ -27,7 +27,7 @@ pub struct Container {
     /// Whether the container should occupy the full height.
     is_height_full: bool,
     /// Border properties of the container.
-    border: Border,
+    border: BorderStyle,
     /// Layout direction of components within the container.
     direction: Order,
     /// Gap between components in the container.
@@ -118,10 +118,64 @@ impl Container {
     }
 
     /// Sets the border properties of the container.
-    pub fn border(mut self, border: Border) -> Self {
+    pub fn border(mut self, border: BorderStyle) -> Self {
         self.border = border;
         self
     }
+
+    /// Sets the border color properties of the container.
+    pub fn border_color(mut self, border_color: Color) -> Self {
+        self.border.1 = border_color;
+        self
+    }
+
+    /// Set the border radius propertie of the container.
+    pub fn border_radius(mut self, border_size: Size) -> Self {
+        self.border.2 = border_size;
+        self
+    }
+
+    /// Sets the border properties of the container.
+    pub fn border_size(mut self, border_size: BorderPart) -> Self {
+        self.border.0 = border_size;
+        self
+    }
+
+    /// Sets the border properties size of the container.
+    pub fn border_size_full(mut self, border_size_full: Size) -> Self {
+        self.border.0 = (border_size_full,border_size_full,border_size_full,border_size_full);
+        self
+    }
+
+    /// Set the border size propertie
+    pub fn border_size_l(mut self, border_size_l: Size) -> Self {
+        let (_,t,b,r) = self.border.0;
+        self.border.0 = (border_size_l, t, b ,r);
+        self
+    }
+
+    /// Set the border size propertie
+    pub fn border_size_t(mut self, border_size_t: Size) -> Self {
+        let (l,_,b,r) = self.border.0;
+        self.border.0 = (l, border_size_t, b ,r);
+        self
+    }
+
+    /// Set the border size propertie
+    pub fn border_size_b(mut self, border_size_b: Size) -> Self {
+        let (l,t,_,r) = self.border.0;
+        self.border.0 = (l, t, border_size_b ,r);
+        self
+    }
+
+
+    /// Set the border size propertie
+    pub fn border_size_r(mut self, border_size_r: Size) -> Self {
+        let (l,t,b,_) = self.border.0;
+        self.border.0 = (l, t, b ,border_size_r);
+        self
+    }
+
 
     /// Sets the layout direction of components in the container.
     pub fn direction(mut self, direction: Order) -> Self {
@@ -188,7 +242,7 @@ impl Container {
     }
 
     /// Retrieves the border properties of the container.
-    pub fn get_border(&self) -> &(u64, (u8, u8, u8, u8), u64) {
+    pub fn get_border(&self) -> &BorderStyle {
         &self.border
     }
 

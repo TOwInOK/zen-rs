@@ -49,3 +49,23 @@ impl Default for Components {
         Self::Container(Container::default())
     }
 }
+
+// pub trait PushToComponents<T> where T: Into<Components> {
+//     fn vstack(items: T) -> Self;
+//     fn hstack(items: T) -> Self;
+// }
+
+// impl<T> PushToComponents<T> for Container where T: Into<Components> {
+//     fn vstack(items: T) -> Self {
+//         let mut container = container().direction(crate::aspects::Order::TopToBottom);
+//         container = container.component(items.into());
+//         container
+//     }
+
+//     fn hstack(items: T) -> Self {
+//         let mut container = container().direction(crate::aspects::Order::LefToRight);
+//         Container::vstack(items)
+//         container = container.component(items.into());
+//         container
+//     }
+// }
