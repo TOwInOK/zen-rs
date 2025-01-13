@@ -24,13 +24,6 @@
 - Interactivity (e.g., CSS animations)
 - Script support for HTML
 
-## Specific style
-create `rustfmt.toml` and add this:
-```toml
-[skip_macro_invocations]
-[[vstack]]
-[[hstack]]
-```
 
 ## Example (HTML)
 ```rust
@@ -45,34 +38,34 @@ fn main() {
 }
 
 fn gh_not_ph() -> impl Into<Components> {
-    vstack!(
-         vstack!(
-             vstack!(
-                 github_outlined();
-                 mono_text_xl("gh");
-                 mono_text_xl("not ph")
-             )
-             .background_color((30, 200, 100, 100))
-             .gap(4)
-             .padding(16)
-             .align_content(zen_rs::aspects::Align::Center)
-             .flex()
-         )
-         .flex()
-         .border_size_full(2)
-         .border_color((255, 255, 255, 100))
-         .border_radius(18)
-     )
-    .flex()
-    .width_full()
-    .height_full()
-    .align_items(Align::Center)
-    .align_content(Align::Center)
-    .background_color((0, 0, 0, 100))
+    vstack((
+        vstack((
+            vstack((
+                github_outlined(),
+                mono_text_xl("gh"),
+                mono_text_xl("not ph"),
+            ))
+            .background_color((30, 200, 100, 100))
+            .gap(4)
+            .padding(16)
+            .align_content(zen_rs::aspects::Align::Center)
+            .flex(),))
+            .flex()
+            .border_size_t(2)
+            .border_size_b(2)
+            .border_color((255, 255, 255, 100))
+            .border_radius(18),
+        ))
+        .flex()
+        .width_full()
+        .height_full()
+        .align_items(Align::Center)
+        .align_content(Align::Center)
+        .background_color((0, 0, 0, 100))
 }
 ```
 
-what we got
+that we got
 ![img](.content/example.png)
 
 
