@@ -1,11 +1,13 @@
 //! Container component
 
-pub mod stack;
-
-use crate::aspects::{Align, BackgroundColor, BorderPart, BorderStyle, Color, Gap, Height, Order, Padding, Size, Width};
+use crate::aspects::{
+    Align, BackgroundColor, BorderPart, BorderStyle, Color, Gap, Height, Order, Padding, Size,
+    Width,
+};
 
 use super::Components;
 
+#[inline]
 /// Returns a default [Container] instance.
 pub fn container() -> Container {
     Container::default()
@@ -43,7 +45,14 @@ pub struct Container {
 }
 
 impl Container {
+    /// add component to end of list
+    #[inline]
+    pub fn push(&mut self, component: impl Into<Components>) {
+        self.components.push(component.into());
+    }
+
     /// Adds a single component to the container.
+    #[inline]
     pub fn component(mut self, component: impl Into<Components>) -> Self {
         self.components.push(component.into());
         self
@@ -51,6 +60,7 @@ impl Container {
 
     /// Adds multiple components to the container.
     /// **note** at once can be added only 1 type of object
+    #[inline]
     pub fn components(
         mut self,
         components: impl IntoIterator<Item = impl Into<Components>>,
@@ -61,192 +71,228 @@ impl Container {
     }
 
     /// Retrieves all components in the container.
+    #[inline]
     pub fn get_components(&self) -> &[Components] {
         &self.components
     }
 
     /// Sets the gap between components in the container.
+    #[inline]
     pub fn gap(mut self, gap: Gap) -> Self {
         self.gap = gap;
         self
     }
 
     /// Sets the padding inside the container.
+    #[inline]
     pub fn padding(mut self, padding: Padding) -> Self {
         self.padding = padding;
         self
     }
 
     /// Retrieves the gap setting of the container.
+    #[inline]
     pub fn get_gap(&self) -> &Gap {
         &self.gap
     }
 
     /// Retrieves the padding setting of the container.
+    #[inline]
     pub fn get_padding(&self) -> &Padding {
         &self.padding
     }
 
     /// Sets the background color of the container.
+    #[inline]
     pub fn background_color(mut self, background_color: BackgroundColor) -> Self {
         self.background_color = background_color;
         self
     }
 
     /// Sets the width of the container.
+    #[inline]
     pub fn width(mut self, width: Width) -> Self {
         self.width = width;
         self
     }
 
     /// Sets the height of the container.
+    #[inline]
     pub fn height(mut self, height: Height) -> Self {
         self.height = height;
         self
     }
 
     /// Toggles whether the container occupies the full width.
+    #[inline]
     pub fn width_full(mut self) -> Self {
         self.is_width_full = !self.is_width_full;
         self
     }
 
     /// Toggles whether the container occupies the full height.
+    #[inline]
     pub fn height_full(mut self) -> Self {
         self.is_height_full = !self.is_height_full;
         self
     }
 
     /// Sets the border properties of the container.
+    #[inline]
     pub fn border(mut self, border: BorderStyle) -> Self {
         self.border = border;
         self
     }
 
     /// Sets the border color properties of the container.
+    #[inline]
     pub fn border_color(mut self, border_color: Color) -> Self {
         self.border.1 = border_color;
         self
     }
 
     /// Set the border radius propertie of the container.
+    #[inline]
     pub fn border_radius(mut self, border_size: Size) -> Self {
         self.border.2 = border_size;
         self
     }
 
     /// Sets the border properties of the container.
+    #[inline]
     pub fn border_size(mut self, border_size: BorderPart) -> Self {
         self.border.0 = border_size;
         self
     }
 
     /// Sets the border properties size of the container.
+    #[inline]
     pub fn border_size_full(mut self, border_size_full: Size) -> Self {
-        self.border.0 = (border_size_full,border_size_full,border_size_full,border_size_full);
+        self.border.0 = (
+            border_size_full,
+            border_size_full,
+            border_size_full,
+            border_size_full,
+        );
         self
     }
 
     /// Set the border size propertie
+    #[inline]
     pub fn border_size_l(mut self, border_size_l: Size) -> Self {
-        let (_,t,b,r) = self.border.0;
-        self.border.0 = (border_size_l, t, b ,r);
+        let (_, t, b, r) = self.border.0;
+        self.border.0 = (border_size_l, t, b, r);
         self
     }
 
     /// Set the border size propertie
+    #[inline]
     pub fn border_size_t(mut self, border_size_t: Size) -> Self {
-        let (l,_,b,r) = self.border.0;
-        self.border.0 = (l, border_size_t, b ,r);
+        let (l, _, b, r) = self.border.0;
+        self.border.0 = (l, border_size_t, b, r);
         self
     }
 
     /// Set the border size propertie
+    #[inline]
     pub fn border_size_b(mut self, border_size_b: Size) -> Self {
-        let (l,t,_,r) = self.border.0;
-        self.border.0 = (l, t, border_size_b ,r);
+        let (l, t, _, r) = self.border.0;
+        self.border.0 = (l, t, border_size_b, r);
         self
     }
-
 
     /// Set the border size propertie
+    #[inline]
     pub fn border_size_r(mut self, border_size_r: Size) -> Self {
-        let (l,t,b,_) = self.border.0;
-        self.border.0 = (l, t, b ,border_size_r);
+        let (l, t, b, _) = self.border.0;
+        self.border.0 = (l, t, b, border_size_r);
         self
     }
-
 
     /// Sets the layout direction of components in the container.
+    #[inline]
     pub fn direction(mut self, direction: Order) -> Self {
         self.direction = direction;
         self
     }
 
     /// Toggles whether the container uses flexible layout.
+    #[inline]
     pub fn flex(mut self) -> Self {
         self.is_flex = !self.is_flex;
         self
     }
 
     /// Sets the alignment of content within the container.
+    #[inline]
     pub fn align_content(mut self, align_content: Align) -> Self {
         self.align_content = align_content;
         self
     }
 
     /// Sets the alignment of individual items within the container.
+    #[inline]
     pub fn align_items(mut self, align_items: Align) -> Self {
         self.align_items = align_items;
         self
     }
 
     /// Retrieves the flexible layout setting of the container.
+    #[inline]
     pub fn get_flex(&self) -> &bool {
         &self.is_flex
     }
 
     /// Retrieves the full-width setting of the container.
+    #[inline]
     pub fn get_width_full(&self) -> &bool {
         &self.is_width_full
     }
 
     /// Retrieves the full-height setting of the container.
+    #[inline]
     pub fn get_height_full(&self) -> &bool {
         &self.is_height_full
     }
 
     /// Retrieves the alignment of content within the container.
+    #[inline]
     pub fn get_align_content(&self) -> &Align {
         &self.align_content
     }
 
     /// Retrieves the alignment of items within the container.
+    #[inline]
     pub fn get_align_items(&self) -> &Align {
         &self.align_items
     }
 
     /// Retrieves the background color of the container.
+    #[inline]
     pub fn get_background_color(&self) -> &(u8, u8, u8, u8) {
         &self.background_color
     }
 
     /// Retrieves the width of the container.
+    #[inline]
     pub fn get_width(&self) -> &u64 {
         &self.width
     }
 
     /// Retrieves the height of the container.
+    #[inline]
     pub fn get_height(&self) -> &u64 {
         &self.height
     }
 
     /// Retrieves the border properties of the container.
+    #[inline]
     pub fn get_border(&self) -> &BorderStyle {
         &self.border
     }
 
     /// Retrieves the layout direction of the container.
+    #[inline]
     pub fn get_direction(&self) -> &Order {
         &self.direction
     }

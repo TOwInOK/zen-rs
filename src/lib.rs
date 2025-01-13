@@ -26,4 +26,5 @@
 
 pub mod aspects;
 pub mod components;
+pub mod dynamic_stack;
 pub mod layouts;

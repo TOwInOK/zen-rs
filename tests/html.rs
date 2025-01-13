@@ -1,29 +1,28 @@
 #[cfg(test)]
 mod test_html {
     use zen_rs::{
-        aspects::Align, components::{github::github_outlined, h::mono_text_xl, Components}, layouts::html::HtmlBuilder, vstack
+        aspects::Align,
+        components::{github::github_outlined, h::mono_text_xl, Components},
+        dynamic_stack::vstack,
+        layouts::html::HtmlBuilder,
     };
 
     fn complited_component() -> impl Into<Components> {
-        vstack!(
-             vstack!(
-                 vstack!(
-                     github_outlined();
-                     mono_text_xl("gh");
-                     mono_text_xl("not ph")
-                 )
-                 .background_color((30, 200, 100, 100))
-                 .gap(4)
-                 .padding(16)
-                 .align_content(zen_rs::aspects::Align::Center)
-                 .flex()
-             )
-             .flex()
-             .border_size_t(2)
-             .border_size_b(2)
-             .border_color((255, 255, 255, 100))
-             .border_radius(18)
-         )
+        vstack((vstack((vstack((
+            github_outlined(),
+            mono_text_xl("gh"),
+            mono_text_xl("not ph"),
+        ))
+        .background_color((30, 200, 100, 100))
+        .gap(4)
+        .padding(16)
+        .align_content(zen_rs::aspects::Align::Center)
+        .flex(),))
+        .flex()
+        .border_size_t(2)
+        .border_size_b(2)
+        .border_color((255, 255, 255, 100))
+        .border_radius(18),))
         .flex()
         .width_full()
         .height_full()

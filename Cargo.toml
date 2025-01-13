@@ -1,6 +1,6 @@
 [package]
 name = "zen-rs"
-version = "0.1.4"
+version = "0.1.5"
 edition = "2021"
 authors = ["TOwInOK <60252419+TOwInOK@users.noreply.github.com>"]
 license = "MIT"
@@ -15,3 +15,23 @@ categories = ["rendering", "web-programming", "text-processing", "template-engin
 [dependencies]
 paste = "1.0.15"
 skia-safe = "0.80.1"
+
+
+[profile.dev]
+opt-level = 0
+debug = true
+
+[profile.release]
+opt-level = 3
+debug = false
+lto = true
+codegen-units = 1
+panic = 'abort'
+
+[profile.test]
+opt-level = 0
+debug = true
+
+[profile.bench]
+opt-level = 3
+debug = false

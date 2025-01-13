@@ -22,6 +22,12 @@ pub enum Components {
     Icon(Icon),
 }
 
+impl From<&Components> for Components {
+    fn from(value: &Components) -> Self {
+        value.clone()
+    }
+}
+
 impl From<Container> for Components {
     /// Converts a `Container` into a `Components` variant.
     fn from(value: Container) -> Self {
@@ -49,23 +55,3 @@ impl Default for Components {
         Self::Container(Container::default())
     }
 }
-
-// pub trait PushToComponents<T> where T: Into<Components> {
-//     fn vstack(items: T) -> Self;
-//     fn hstack(items: T) -> Self;
-// }
-
-// impl<T> PushToComponents<T> for Container where T: Into<Components> {
-//     fn vstack(items: T) -> Self {
-//         let mut container = container().direction(crate::aspects::Order::TopToBottom);
-//         container = container.component(items.into());
-//         container
-//     }
-
-//     fn hstack(items: T) -> Self {
-//         let mut container = container().direction(crate::aspects::Order::LefToRight);
-//         Container::vstack(items)
-//         container = container.component(items.into());
-//         container
-//     }
-// }
