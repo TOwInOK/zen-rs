@@ -32,8 +32,8 @@ use zen_rs::{
 };
 
 fn main() {
-    let cc = complited_component();
-    let html = HtmlBuilder::default().component(cc).build_as_html();
+    let gp = gh_not_ph();
+    let html = HtmlBuilder::default().component(gp).build_as_html();
     std::fs::write("gh_not_ph.html", html).unwrap();
 }
 
