@@ -6,17 +6,19 @@ use crate::size::GetSize;
 pub struct Text {
     // Local content
     /// Paths
-    content: String,
+    pub content: String,
+    /// Font family
+    pub font_family: String,
 
     // Aspects
     /// Background color
-    bg: RGBA,
+    pub bg: RGBA,
     /// Foreground color
-    fg: RGBA,
-    /// Width & Height
-    size: (SizePremitive, SizePremitive),
+    pub fg: RGBA,
+    /// Font size
+    pub size: SizePremitive,
     /// Padding around components
-    padding: SizePremitive,
+    pub padding: SizePremitive,
 }
 
 pub fn text() -> Text {
@@ -29,6 +31,14 @@ impl Text {
         content: impl ToString,
     ) -> Self {
         self.content = content.to_string();
+        self
+    }
+    /// set font family
+    pub fn font_family(
+        mut self,
+        font_family: impl ToString,
+    ) -> Self {
+        self.font_family = font_family.to_string();
         self
     }
 }
@@ -55,19 +65,20 @@ impl Foreground for Text {
 }
 
 impl Size for Text {
+    /// set font size
     fn width(
         mut self,
         value: SizePremitive,
     ) -> Self {
-        self.size.0 = value;
+        self.size = value;
         self
     }
-
+    /// set font size
     fn height(
         mut self,
         value: SizePremitive,
     ) -> Self {
-        self.size.1 = value;
+        self.size = value;
         self
     }
 }
@@ -84,6 +95,6 @@ impl Padding for Text {
 
 impl GetSize for Text {
     fn get_size(&self) -> (SizePremitive, SizePremitive) {
-        (self.size.0 + self.padding, self.size.1 + self.padding)
+        (self.size + self.padding, self.size + self.padding)
     }
 }

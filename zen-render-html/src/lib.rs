@@ -1,17 +1,32 @@
-pub fn add(
-    left: u64,
-    right: u64,
-) -> u64 {
-    left + right
+mod render;
+mod style;
+
+use core::fmt;
+
+use render::node_render;
+use tagu::{build, elem::Elem};
+use zen_tree::node::Node;
+
+#[derive(Debug)]
+pub struct Html {
+    node: Node,
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+impl Html {
+    pub fn new(node: Node) -> Self {
+        Self { node }
+    }
+}
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+impl Html {
+    pub fn render(&self) -> Result<String, fmt::Error> {
+        let html = build::single("DOCTYPE html")
+            .with_start("!")
+            .with_ending("")
+            .chain(build::elem("html"));
+        let out = html.append(node_render(&self.node));
+        let mut buff = String::new();
+        tagu::render(out.with_tab(" "), &mut buff)?;
+        Ok(buff)
     }
 }

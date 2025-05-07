@@ -9,27 +9,27 @@ use super::Node;
 pub struct Container {
     // Local content
     /// Nested components
-    content: Vec<Node>,
+    pub content: Vec<Node>,
 
     // Aspects
     /// Background color
-    bg: RGBA,
+    pub bg: RGBA,
     /// Width & Height
-    size: (SizePremitive, SizePremitive),
+    pub size: (SizePremitive, SizePremitive),
     /// Gap between components
-    gap: SizePremitive,
+    pub gap: SizePremitive,
     /// Padding around components
-    padding: SizePremitive,
+    pub padding: SizePremitive,
     /// Direction of components
-    direction: DirectionPremitive,
+    pub direction: DirectionPremitive,
     /// Alignment of components
-    alignment: AlignmentPrimitive,
+    pub alignment: AlignmentPrimitive,
     /// Border size
-    border_size: BorderParts,
+    pub border_size: BorderParts,
     /// Border radius
-    border_radius: BorderParts,
+    pub border_radius: BorderParts,
     /// Border color
-    border_color: RGBA,
+    pub border_color: RGBA,
 }
 
 pub fn container() -> Container {

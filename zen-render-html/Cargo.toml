@@ -8,3 +8,6 @@ version.workspace = true
 description = "Generate HTML from zen-tree"
 
 [dependencies]
+zen-tree = { path = "../zen-tree" }
+zen-core = { path = "../zen-core" }
+tagu.workspace = true

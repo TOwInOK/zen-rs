@@ -8,19 +8,19 @@ use super::Node;
 pub struct Link {
     // Local content
     /// inner node
-    content: Box<Node>,
+    pub content: Box<Node>,
     /// Link destination
-    destination: String,
+    pub destination: String,
 
     // Aspects
     /// Background color
-    bg: RGBA,
+    pub bg: RGBA,
     /// Foreground color
-    fg: RGBA,
+    pub fg: RGBA,
     /// Width & Height
-    size: (SizePremitive, SizePremitive),
+    pub size: (SizePremitive, SizePremitive),
     /// Padding around components
-    padding: SizePremitive,
+    pub padding: SizePremitive,
 }
 
 pub fn link() -> Link {

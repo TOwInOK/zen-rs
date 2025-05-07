@@ -6,17 +6,17 @@ use crate::size::GetSize;
 pub struct Icon {
     // Local content
     /// Paths
-    content: String,
+    pub content: String,
 
     // Aspects
     /// Background color
-    bg: RGBA,
+    pub bg: RGBA,
     /// Foreground color
-    fg: RGBA,
+    pub fg: RGBA,
     /// Width & Height
-    size: (SizePremitive, SizePremitive),
+    pub size: (SizePremitive, SizePremitive),
     /// Padding around components
-    padding: SizePremitive,
+    pub padding: SizePremitive,
 }
 
 pub fn icon() -> Icon {

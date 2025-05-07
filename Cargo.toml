@@ -11,3 +11,4 @@ version = "0.0.1"
 
 
 [workspace.dependencies]
+tagu = "0.1.6"

@@ -2,10 +2,10 @@
 #[derive(Debug, Default, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum AlignmentPrimitive {
     #[default]
+    Stretch,
     Left,
     Center,
     Right,
-    SpaceBetween,
 }
 
 /// Set alignment
