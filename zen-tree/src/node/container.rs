@@ -1,10 +1,4 @@
-use zen_core::{
-    aspect::{RGBA, SizePremitive},
-    prelude::{
-        Alignment, AlignmentPrimitive, Background, Border, BorderParts, Direction,
-        DirectionPremitive, Foreground, Size, Spacing,
-    },
-};
+use zen_core::prelude::*;
 
 use super::Node;
 
