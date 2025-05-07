@@ -5,8 +5,11 @@ use super::Node;
 #[derive(Debug, Default, Clone)]
 /// Container node
 pub struct Container {
+    // Local content
     /// Nested components
-    components: Vec<Node>,
+    content: Vec<Node>,
+
+    // Aspects
     /// Background color
     bg: RGBA,
     /// Width & Height
@@ -36,7 +39,7 @@ impl Container {
         &mut self,
         node: impl Into<Node>,
     ) {
-        self.components.push(node.into());
+        self.content.push(node.into());
     }
 }
 
@@ -125,20 +128,22 @@ impl Size for Container {
     }
 }
 
-impl Spacing for Container {
-    fn gap(
-        mut self,
-        value: SizePremitive,
-    ) -> Self {
-        self.gap = value;
-        self
-    }
-
+impl Padding for Container {
     fn padding(
         mut self,
         value: SizePremitive,
     ) -> Self {
         self.padding = value;
+        self
+    }
+}
+
+impl Gap for Container {
+    fn gap(
+        mut self,
+        value: SizePremitive,
+    ) -> Self {
+        self.gap = value;
         self
     }
 }

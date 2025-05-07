@@ -21,7 +21,8 @@ pub mod prelude {
     pub use super::direction::Direction;
     pub use super::foreground::Foreground;
     pub use super::size::Size;
-    pub use super::spacing::Spacing;
+    pub use super::spacing::Gap;
+    pub use super::spacing::Padding;
 }
 
 pub type SizePremitive = f32;

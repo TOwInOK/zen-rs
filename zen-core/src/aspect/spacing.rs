@@ -1,12 +1,14 @@
 use super::SizePremitive;
 
-/// Trait for spacing-related operations.
-pub trait Spacing {
+pub trait Gap {
     /// Add a gap between elements.
     fn gap(
         self,
         value: SizePremitive,
     ) -> Self;
+}
+
+pub trait Padding {
     /// Add padding around elements.
     fn padding(
         self,
