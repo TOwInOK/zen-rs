@@ -1,0 +1,10 @@
+
+[package]
+name = "zen-core"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Provide main modules for zen"
+
+[dependencies]

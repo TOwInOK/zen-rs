@@ -1,0 +1,13 @@
+
+[workspace]
+members = ["zen-core", "zen-render", "zen-render-html", "zen-tree"]
+resolver = "2"
+
+[workspace.package]
+authors = ["TOwInOK <60252419+TOwInOK@users.noreply.github.com>"]
+license = "Apache-2.0"
+edition = "2024"
+version = "0.0.1"
+
+
+[workspace.dependencies]
