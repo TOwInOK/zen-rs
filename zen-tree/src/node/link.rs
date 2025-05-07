@@ -1,5 +1,7 @@
 use zen_core::prelude::*;
 
+use crate::size::GetSize;
+
 use super::Node;
 
 #[derive(Debug, Default, Clone)]
@@ -89,5 +91,15 @@ impl Padding for Link {
     ) -> Self {
         self.padding = value;
         self
+    }
+}
+
+impl GetSize for Link {
+    fn get_size(&self) -> (SizePremitive, SizePremitive) {
+        let content_size = self.content.get_size();
+        (
+            self.size.0 + self.padding + content_size.0,
+            self.size.1 + self.padding + content_size.1,
+        )
     }
 }

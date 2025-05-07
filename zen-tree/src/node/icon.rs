@@ -1,5 +1,7 @@
 use zen_core::prelude::*;
 
+use crate::size::GetSize;
+
 #[derive(Debug, Default, Clone)]
 pub struct Icon {
     // Local content
@@ -77,5 +79,11 @@ impl Padding for Icon {
     ) -> Self {
         self.padding = value;
         self
+    }
+}
+
+impl GetSize for Icon {
+    fn get_size(&self) -> (SizePremitive, SizePremitive) {
+        (self.size.0 + self.padding, self.size.1 + self.padding)
     }
 }

@@ -1,5 +1,7 @@
 use zen_core::prelude::*;
 
+use crate::size::GetSize;
+
 use super::Node;
 
 #[derive(Debug, Default, Clone)]
@@ -145,5 +147,31 @@ impl Gap for Container {
     ) -> Self {
         self.gap = value;
         self
+    }
+}
+
+impl GetSize for Container {
+    fn get_size(&self) -> (SizePremitive, SizePremitive) {
+        let mut content_size = self.content.iter().fold(
+            (SizePremitive::default(), SizePremitive::default()),
+            |(mut x, mut y), node| {
+                let (width, height) = node.get_size();
+                x += width;
+                y += height;
+                (x, y)
+            },
+        );
+        match self.direction {
+            DirectionPremitive::TopToBottom | DirectionPremitive::BottomToTop => {
+                content_size.1 += self.gap * (self.content.len() - 1) as f32;
+            }
+            DirectionPremitive::LefToRight | DirectionPremitive::RightToLeft => {
+                content_size.0 += self.gap * (self.content.len() - 1) as f32;
+            }
+        }
+        (
+            self.size.0 + self.padding + self.border_size.0 + content_size.0,
+            self.size.1 + self.padding + self.border_size.1 + content_size.1,
+        )
     }
 }
