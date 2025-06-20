@@ -19,7 +19,7 @@ pub fn icon(node: &Icon) -> DynamicElement<'_> {
 
 fn style(node: &Icon) -> String {
     let s = [
-        size(node.size),
+        size(node),
         background_color(node.bg),
         foreground_color(node.fg),
         padding(node.padding),

@@ -81,6 +81,16 @@ impl Size for Text {
         self.size = value;
         self
     }
+
+    fn size(
+        self,
+        value: SizePremitive,
+    ) -> Self
+    where
+        Self: Sized,
+    {
+        self.width(value)
+    }
 }
 
 impl Padding for Text {
@@ -95,6 +105,20 @@ impl Padding for Text {
 
 impl GetSize for Text {
     fn get_size(&self) -> (SizePremitive, SizePremitive) {
-        (self.size + self.padding, self.size + self.padding)
+        // Calculate width based on text content length and font size
+        // A rough estimation: each character is approximately 0.6 times the font size in width
+        let text_width = if self.content.is_empty() {
+            0.0
+        } else {
+            // Estimate based on character count and font size
+            let char_count = self.content.chars().count() as f32;
+            char_count * self.size * 0.6
+        };
+
+        // Add padding to both dimensions
+        let width = text_width + (self.padding * 2.0);
+        let height = self.size + (self.padding * 2.0);
+
+        (width, height)
     }
 }

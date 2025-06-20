@@ -17,7 +17,7 @@ use super::node_render;
 
 pub fn container(node: &Container) -> DynamicElement<'_> {
     build::box_elem(
-        build::elem("a")
+        build::elem("div")
             .with(("style", style(node)))
             .inline()
             .append(build::from_iter(
@@ -28,7 +28,7 @@ pub fn container(node: &Container) -> DynamicElement<'_> {
 
 fn style(node: &Container) -> String {
     let s = [
-        size(node.size),
+        size(node),
         background_color(node.bg),
         border(node.border_color, node.border_radius, node.border_size),
         padding(node.padding),
